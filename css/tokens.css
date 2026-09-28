@@ -26,6 +26,47 @@
   --cor-neutro-100: #f5f7fa; /* fundo de seções alternadas */
   --cor-branco:     #ffffff;
 
+  /* ---------- Tokens semânticos (tema claro, padrão) ----------
+     Os componentes usam SÓ estes nomes (papel da cor), nunca a paleta direta.
+     Assim, os temas escuro e de alto contraste (temas.css) trocam apenas
+     estes valores, e nenhum componente precisa ser reescrito. */
+  color-scheme: light;
+  --cor-fundo: var(--cor-branco);
+  --cor-superficie: var(--cor-branco);            /* cabeçalho, cartões, campos */
+  --cor-fundo-alternado: var(--cor-neutro-100);
+  --cor-fundo-destaque: var(--cor-primaria-100);
+  --cor-texto: var(--cor-neutro-900);             /* 14,8:1 */
+  --cor-texto-suave: var(--cor-neutro-700);       /* 6,5:1 */
+  --cor-texto-destaque: var(--cor-primaria-900);  /* sobre fundo-destaque 9,1:1 */
+  --cor-link: var(--cor-primaria-700);            /* 7,8:1 */
+  --cor-link-hover: var(--cor-primaria-900);
+  --cor-borda: var(--cor-neutro-400);             /* bordas de campos 3,7:1 */
+  --cor-divisoria: var(--cor-neutro-200);         /* decorativa */
+  --cor-botao-fundo: var(--cor-primaria-700);
+  --cor-botao-fundo-hover: var(--cor-primaria-900);
+  --cor-botao-texto: var(--cor-branco);           /* 7,8:1 */
+  --cor-foco: var(--cor-secundaria-400);
+  --cor-foco-contorno: var(--cor-neutro-900);
+  --cor-erro-texto: var(--cor-erro);
+  --cor-sucesso-texto: var(--cor-sucesso);
+  --cor-alerta-texto: var(--cor-alerta);
+  --cor-erro-fundo: var(--cor-erro);              /* preenchimentos com texto por cima */
+  --cor-sucesso-fundo: var(--cor-sucesso);
+  --cor-alerta-fundo: var(--cor-alerta);
+  --cor-sobre-preenchimento: var(--cor-branco);
+  --cor-desabilitado-fundo: var(--cor-neutro-200);
+  --cor-desabilitado-texto: var(--cor-neutro-700);
+  --cor-rodape-fundo: var(--cor-neutro-900);
+  --cor-rodape-texto: var(--cor-branco);
+  --cor-rodape-suave: var(--cor-neutro-200);
+  --cor-aviso-fundo: #fff4d6;
+  --cor-aviso-borda: var(--cor-secundaria-400);
+  --cor-aviso-texto: var(--cor-neutro-900);
+  --cor-toast-fundo: var(--cor-neutro-900);
+  --cor-toast-texto: var(--cor-branco);
+  --fundo-logo: transparent;
+  --icone-valido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%232f7d4f' stroke-width='2'/%3E%3C/svg%3E");
+
   /* ---------- Tipografia ---------- */
   --fonte-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   /* Escala modular 1,25 (terça maior) a partir de 16px */

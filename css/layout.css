@@ -37,7 +37,7 @@ body {
 
 /* Seções */
 .secao { padding-block: var(--espaco-7); }
-.secao--alternada { background: var(--cor-neutro-100); }
+.secao--alternada { background: var(--cor-fundo-alternado); }
 .leitura:not(.container),
 .container.leitura > * { max-width: var(--largura-leitura); }
 
@@ -52,7 +52,7 @@ body {
 .pilha { display: flex; flex-direction: column; gap: var(--espaco-3); }
 
 /* Hero: imagem e texto lado a lado a partir do desktop */
-.hero { padding-block: var(--espaco-7); background: var(--cor-primaria-100); }
+.hero { padding-block: var(--espaco-7); background: var(--cor-fundo-destaque); }
 .hero .grade { align-items: center; }
 
 /* ---------- Breakpoints (mobile-first, sempre min-width) ---------- */
