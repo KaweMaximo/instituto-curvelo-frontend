@@ -7,7 +7,8 @@ const PREFIXO = 'curvelo:v1:';
 
 export const CHAVES = {
   cadastros: 'cadastros',       // lista de cadastros enviados
-  rascunho: 'rascunho-cadastro' // formulário em andamento (salvo a cada digitação)
+  rascunho: 'rascunho-cadastro', // formulário em andamento (salvo a cada digitação)
+  tema: 'tema'                   // tema de cores escolhido no rodapé
 };
 
 export function ler(chave, padrao = null) {
