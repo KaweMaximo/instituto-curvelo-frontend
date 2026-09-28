@@ -1,0 +1,290 @@
+/* =========================================================
+   COMPONENTES - nomenclatura BEM (bloco__elemento--modificador)
+   ========================================================= */
+
+/* ---------- Cabeçalho e navegação ---------- */
+.cabecalho {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--cor-branco);
+  border-bottom: 1px solid var(--cor-neutro-200);
+}
+.cabecalho__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  min-height: 4rem;
+}
+
+.menu__botao {                          /* hambúrguer, só no celular */
+  display: inline-flex; align-items: center; gap: var(--espaco-2);
+  min-height: var(--alvo-toque); min-width: var(--alvo-toque);
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 1px solid var(--cor-neutro-400); border-radius: var(--raio-sm);
+  background: var(--cor-branco); color: var(--cor-neutro-900);
+  font: inherit; cursor: pointer;
+}
+.menu__icone, .menu__icone::before, .menu__icone::after {
+  display: block; width: 1.25rem; height: 2px;
+  background: currentColor; transition: transform var(--transicao);
+}
+.menu__icone { position: relative; }
+.menu__icone::before, .menu__icone::after { content: ""; position: absolute; left: 0; }
+.menu__icone::before { top: -6px; }
+.menu__icone::after  { top: 6px; }
+.menu__botao[aria-expanded="true"] .menu__icone { background: transparent; }
+.menu__botao[aria-expanded="true"] .menu__icone::before { transform: translateY(6px) rotate(45deg); }
+.menu__botao[aria-expanded="true"] .menu__icone::after  { transform: translateY(-6px) rotate(-45deg); }
+
+.menu__lista {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column;
+}
+/* Com JS ativo, o menu móvel começa fechado; sem JS ele fica sempre visível */
+.js .menu__lista {
+  position: absolute; left: 0; right: 0; top: 100%;
+  background: var(--cor-branco);
+  border-bottom: 1px solid var(--cor-neutro-200);
+  box-shadow: var(--sombra-elevada);
+}
+.js .menu__lista:not(.menu__lista--aberta) { display: none; }
+.no-js .menu__botao { display: none; }
+
+.menu__link {
+  display: flex; align-items: center;
+  min-height: var(--alvo-toque);
+  padding: var(--espaco-3) var(--espaco-4);
+  color: var(--cor-neutro-900); text-decoration: none; font-weight: var(--peso-negrito);
+}
+.menu__link:hover { background: var(--cor-primaria-100); color: var(--cor-primaria-900); }
+.menu__link[aria-current="page"] {
+  color: var(--cor-primaria-700);
+  box-shadow: inset 4px 0 0 var(--cor-primaria-700);
+}
+
+@media (min-width: 48em) {
+  .menu__botao { display: none; }
+  .menu__lista,
+  .js .menu__lista,
+  .js .menu__lista:not(.menu__lista--aberta) {   /* mesma especificidade da regra móvel, para vencê-la */
+    position: static; display: flex; flex-direction: row; gap: var(--espaco-2);
+    box-shadow: none; border: 0;
+  }
+  .menu__link[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--cor-primaria-700); }
+}
+
+/* ---------- Submenu (dropdown) ---------- */
+.menu__item--submenu { position: relative; display: flex; flex-wrap: wrap; align-items: center; }
+.menu__item--submenu > .menu__link { flex: 1; }
+.submenu__botao {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: var(--alvo-toque); min-height: var(--alvo-toque);
+  border: 0; background: transparent; color: var(--cor-neutro-900); cursor: pointer;
+}
+.submenu__seta {                         /* seta desenhada em CSS, gira ao abrir */
+  width: .5rem; height: .5rem;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform var(--transicao);
+}
+.submenu__botao[aria-expanded="true"] .submenu__seta { transform: rotate(-135deg); }
+
+.submenu { list-style: none; margin: 0; padding: 0; width: 100%; background: var(--cor-neutro-100); }
+.js .submenu { display: none; }                          /* celular: fechado até tocar na seta */
+.js .submenu__botao[aria-expanded="true"] + .submenu { display: block; }
+.no-js .submenu__botao { display: none; }               /* sem JS: submenu sempre visível */
+.submenu__link {
+  display: flex; align-items: center; min-height: var(--alvo-toque);
+  padding: var(--espaco-2) var(--espaco-6);
+  color: var(--cor-neutro-900); text-decoration: none;
+}
+.submenu__link:hover, .submenu__link:focus-visible { background: var(--cor-primaria-100); color: var(--cor-primaria-900); }
+
+/* Abertura do menu móvel com animação (display não anima, então uso keyframes) */
+.menu__lista--aberta { animation: menu-desliza var(--transicao) both; }
+@keyframes menu-desliza {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 48em) {
+  .menu__item--submenu { flex-wrap: nowrap; }
+  .submenu__botao { min-width: 2rem; }
+  /* Desktop: painel flutuante, oculto com visibility/opacity para permitir transição */
+  .submenu,
+  .js .submenu,
+  .no-js .submenu {
+    display: block;
+    position: absolute; top: 100%; left: 0; z-index: 60;
+    min-width: 16rem; padding-block: var(--espaco-2);
+    background: var(--cor-branco);
+    border: 1px solid var(--cor-neutro-200); border-radius: var(--raio-md);
+    box-shadow: var(--sombra-elevada);
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity var(--transicao), transform var(--transicao), visibility var(--transicao);
+  }
+  /* Abre com mouse (:hover) ou pelo botão (aria-expanded). O :focus-within foi removido na
+     auditoria de acessibilidade: ele mostrava o painel sem atualizar aria-expanded (WCAG 4.1.2). */
+  .menu__item--submenu:hover > .submenu,
+  .js .submenu__botao[aria-expanded="true"] + .submenu {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .submenu__link { padding-inline: var(--espaco-4); }
+}
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--espaco-2);
+  min-height: var(--alvo-toque);
+  padding: var(--espaco-3) var(--espaco-5);
+  border: 2px solid var(--cor-primaria-700); border-radius: var(--raio-sm);
+  background: var(--cor-primaria-700); color: var(--cor-branco);
+  font: inherit; font-weight: var(--peso-negrito); text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transicao), border-color var(--transicao),
+              box-shadow var(--transicao), transform var(--transicao);
+}
+/* hover: escurece e ganha sombra */
+.botao:hover {
+  background: var(--cor-primaria-900); border-color: var(--cor-primaria-900); color: var(--cor-branco);
+  box-shadow: var(--sombra-cartao);
+}
+/* focus-visible: anel amarelo + contorno escuro, visível sobre qualquer fundo */
+.botao:focus-visible { outline: 3px solid var(--cor-secundaria-400); outline-offset: 2px; box-shadow: 0 0 0 5px var(--cor-neutro-900); }
+/* active: "afunda" 1px e perde a sombra, simulando o clique */
+.botao:active { transform: translateY(1px); box-shadow: none; background: var(--cor-primaria-900); }
+/* disabled: cinza, sem sombra e sem movimento */
+.botao:disabled, .botao[aria-disabled="true"] {
+  background: var(--cor-neutro-200); border-color: var(--cor-neutro-200); color: var(--cor-neutro-700);
+  box-shadow: none; transform: none; cursor: not-allowed;
+}
+
+.botao--secundario { background: var(--cor-branco); color: var(--cor-primaria-700); }
+.botao--secundario:hover { background: var(--cor-primaria-100); color: var(--cor-primaria-900); }
+.botao--secundario:active { background: var(--cor-primaria-100); }
+
+/* ---------- Cartões ---------- */
+.cartao {
+  display: flex; flex-direction: column;
+  height: 100%;
+  background: var(--cor-branco);
+  border: 1px solid var(--cor-neutro-200);
+  border-radius: var(--raio-md);
+  box-shadow: var(--sombra-cartao);
+  overflow: hidden;
+  transition: transform var(--transicao), box-shadow var(--transicao);
+}
+.cartao:hover, .cartao:focus-within { transform: translateY(-2px); box-shadow: var(--sombra-elevada); }
+.cartao__imagem { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+.cartao__corpo { display: flex; flex-direction: column; gap: var(--espaco-3); flex: 1; padding: var(--espaco-5); }
+.cartao__titulo { margin: 0; font-size: var(--texto-lg); }
+.cartao__meta { display: flex; flex-wrap: wrap; gap: var(--espaco-2); padding: 0; margin: 0; list-style: none; }
+.cartao__acao { margin-top: auto; }      /* empurra o botão para o rodapé do cartão */
+/* O link do título cobre o cartão inteiro, mantendo um único ponto de foco */
+.cartao__link { color: inherit; text-decoration: none; }
+.cartao__link::after { content: ""; position: absolute; inset: 0; }
+.cartao--clicavel { position: relative; }
+
+.selo {
+  display: inline-block;
+  padding: var(--espaco-1) var(--espaco-3);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-primaria-100); color: var(--cor-primaria-900);
+  font-size: var(--texto-sm); font-weight: var(--peso-negrito);
+}
+.selo--destaque { background: var(--cor-secundaria-400); color: var(--cor-neutro-900); }
+.selo--sucesso  { background: var(--cor-sucesso); color: var(--cor-branco); }
+.selo--erro     { background: var(--cor-erro); color: var(--cor-branco); }
+
+/* ---------- Formulário ---------- */
+.formulario { max-width: var(--largura-leitura); }
+.campo { display: flex; flex-direction: column; gap: var(--espaco-1); margin-bottom: var(--espaco-4); }
+.campo__rotulo { font-weight: var(--peso-negrito); }
+.campo__obrigatorio { color: var(--cor-erro); }
+.campo__dica { font-size: var(--texto-sm); color: var(--cor-neutro-700); }
+.campo__controle {
+  width: 100%;
+  min-height: var(--alvo-toque);
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 1px solid var(--cor-neutro-400); border-radius: var(--raio-sm);
+  background: var(--cor-branco); color: var(--cor-neutro-900);
+  font: inherit;
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+.campo__controle:focus { border-color: var(--cor-primaria-700); box-shadow: 0 0 0 3px var(--cor-primaria-100); outline: none; }
+.campo__controle:focus-visible { outline: 3px solid var(--cor-secundaria-400); }
+
+/* hover antes dos estados de validação, para não sobrescrever a borda de erro */
+.campo__controle:hover { border-color: var(--cor-neutro-700); }
+
+/* Feedback: só aparece depois que a pessoa interage (:user-invalid) ou após tentar enviar */
+.campo__erro { display: none; font-size: var(--texto-sm); color: var(--cor-erro); font-weight: var(--peso-negrito); }
+.campo__erro::before { content: "⚠ "; }       /* ícone + texto: não depende só da cor */
+.campo__controle:user-invalid,
+.formulario--enviado .campo__controle:invalid { border: 2px solid var(--cor-erro); }
+.campo__controle:user-invalid ~ .campo__erro,
+.formulario--enviado .campo__controle:invalid ~ .campo__erro { display: block; }
+.campo__controle:user-valid {
+  border-color: var(--cor-sucesso);
+  /* ícone de confirmação desenhado em SVG embutido, sem requisição extra */
+  background: var(--cor-branco) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%232f7d4f' stroke-width='2'/%3E%3C/svg%3E") no-repeat right var(--espaco-3) center / 1rem;
+  padding-right: var(--espaco-7);
+}
+select.campo__controle:user-valid { background-image: none; padding-right: var(--espaco-3); }
+
+.grupo { border: 1px solid var(--cor-neutro-200); border-radius: var(--raio-md); padding: var(--espaco-5); margin: 0 0 var(--espaco-5); }
+.grupo__legenda { font-size: var(--texto-lg); font-weight: var(--peso-negrito); padding-inline: var(--espaco-2); }
+.opcao { display: flex; align-items: center; gap: var(--espaco-3); min-height: var(--alvo-toque); }
+.opcao input { width: 1.25rem; height: 1.25rem; accent-color: var(--cor-primaria-700); }
+
+.armadilha { position: absolute; left: -9999px; }
+
+/* ---------- Alertas e toast ---------- */
+.alerta {
+  display: flex; gap: var(--espaco-3); align-items: flex-start;
+  padding: var(--espaco-4);
+  border-left: 4px solid currentColor; border-radius: var(--raio-sm);
+  background: var(--cor-neutro-100);
+}
+.alerta--sucesso { color: var(--cor-sucesso); }
+.alerta--erro    { color: var(--cor-erro); }
+.alerta--aviso   { color: var(--cor-alerta); }
+.alerta__texto { color: var(--cor-neutro-900); margin: 0; }
+.alerta__icone {                       /* ícone em círculo: o tipo do alerta não depende só da cor */
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  color: var(--cor-branco); font-weight: var(--peso-negrito); font-size: var(--texto-sm);
+}
+.alerta--sucesso .alerta__icone { background: var(--cor-sucesso); }
+.alerta--aviso   .alerta__icone { background: var(--cor-alerta); }
+.alerta--erro    .alerta__icone { background: var(--cor-erro); }
+
+/* Guia de componentes */
+.guia__bloco { padding-block: var(--espaco-5); border-top: 1px solid var(--cor-neutro-200); }
+
+.toast {
+  position: fixed; left: var(--espaco-4); right: var(--espaco-4); bottom: var(--espaco-4); z-index: 200;
+  max-width: 24rem; margin-inline: auto;
+  padding: var(--espaco-4) var(--espaco-5);
+  border-radius: var(--raio-md);
+  background: var(--cor-neutro-900); color: var(--cor-branco);
+  border-left: 4px solid var(--cor-secundaria-400);  /* destaca o toast mesmo sobre o rodapé escuro */
+  box-shadow: var(--sombra-elevada);
+  transform: translateY(150%); visibility: hidden;
+  transition: transform var(--transicao), visibility var(--transicao);
+}
+.toast--visivel { transform: translateY(0); visibility: visible; }
+
+/* ---------- Modal (elemento dialog nativo) ---------- */
+.modal {
+  width: min(calc(100% - 2rem), 32rem);
+  padding: var(--espaco-6);
+  border: 0; border-radius: var(--raio-md);
+  box-shadow: var(--sombra-elevada);
+}
+.modal::backdrop { background: rgba(31, 41, 51, .6); }
+.modal__acoes { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--espaco-3); margin-top: var(--espaco-5); }
+
+/* ---------- Rodapé ---------- */
+.rodape { padding-block: var(--espaco-6); background: var(--cor-neutro-900); color: var(--cor-branco); }
+.rodape a { color: var(--cor-branco); }
+.rodape small { color: var(--cor-neutro-200); }

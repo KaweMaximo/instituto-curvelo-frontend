@@ -1,0 +1,16 @@
+{
+  "name": "instituto-curvelo-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plataforma web do Instituto Curvelo (projeto acadêmico de Desenvolvimento Front-end - Cruzeiro do Sul Virtual).",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "node scripts/build.mjs",
+    "preview": "python3 -m http.server 8080 --directory dist"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "license": "MIT"
+}

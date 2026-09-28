@@ -1,0 +1,87 @@
+/* =========================================================
+   LAYOUT - macro com CSS Grid (12 colunas), micro com Flexbox
+   Mobile-first: 4 colunas úteis no celular, 8 no tablet, 12 no desktop.
+   ========================================================= */
+
+/* Estrutura da página: sticky footer com Grid */
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;   /* aviso | header | main | footer */
+}
+
+.container {
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin-inline: auto;
+  padding-inline: var(--espaco-4);
+}
+
+/* Grade de 12 colunas */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--espaco-4);
+}
+/* No celular todo item ocupa a linha inteira */
+.grade > * { grid-column: 1 / -1; }
+
+/* Lista de cartões: se adapta ao espaço sem media query */
+.grade-cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: var(--espaco-5);
+  padding: 0;
+  list-style: none;
+}
+
+/* Seções */
+.secao { padding-block: var(--espaco-7); }
+.secao--alternada { background: var(--cor-neutro-100); }
+.leitura:not(.container),
+.container.leitura > * { max-width: var(--largura-leitura); }
+
+/* Helpers de Flexbox para componentes internos */
+.linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espaco-4);
+}
+.linha--entre { justify-content: space-between; }
+.pilha { display: flex; flex-direction: column; gap: var(--espaco-3); }
+
+/* Hero: imagem e texto lado a lado a partir do desktop */
+.hero { padding-block: var(--espaco-7); background: var(--cor-primaria-100); }
+.hero .grade { align-items: center; }
+
+/* ---------- Breakpoints (mobile-first, sempre min-width) ---------- */
+
+@media (min-width: 36em) {           /* 1) sm - 576px: celulares grandes na horizontal */
+  .container { padding-inline: var(--espaco-5); }
+  .sm-metade { grid-column: span 2; }  /* 2 de 4 colunas */
+}
+
+@media (min-width: 48em) {           /* 2) md - 768px: tablets em pé */
+  .grade { grid-template-columns: repeat(8, minmax(0, 1fr)); gap: var(--espaco-5); }
+  .sm-metade, .md-metade { grid-column: span 4; }
+}
+
+@media (min-width: 62em) {           /* 3) lg - 992px: tablets deitados e notebooks pequenos */
+  .grade { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--espaco-6); }
+  .sm-metade, .md-metade, .lg-metade { grid-column: span 6; }
+  .lg-terco   { grid-column: span 4; }
+  .lg-2tercos { grid-column: span 8; }
+  .lg-quarto  { grid-column: span 3; }
+}
+
+@media (min-width: 75em) {           /* 4) xl - 1200px: desktops */
+  .container { padding-inline: var(--espaco-6); }
+  .secao { padding-block: var(--espaco-8); }
+  .hero { padding-block: var(--espaco-8); }
+}
+
+@media (min-width: 90em) {           /* 5) xxl - 1440px: monitores panorâmicos */
+  :root { --largura-conteudo: 80rem; } /* amplia o container sem esticar linhas de texto */
+  .grade { gap: var(--espaco-7); }
+}
