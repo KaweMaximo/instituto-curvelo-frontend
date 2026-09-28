@@ -122,9 +122,9 @@
     opacity: 0; visibility: hidden; transform: translateY(-4px);
     transition: opacity var(--transicao), transform var(--transicao), visibility var(--transicao);
   }
-  /* Abre com mouse (:hover), com teclado (:focus-within) ou pelo botão (aria-expanded) */
+  /* Abre com mouse (:hover) ou pelo botão (aria-expanded). O :focus-within foi removido na
+     auditoria de acessibilidade: ele mostrava o painel sem atualizar aria-expanded (WCAG 4.1.2). */
   .menu__item--submenu:hover > .submenu,
-  .menu__item--submenu:focus-within > .submenu,
   .js .submenu__botao[aria-expanded="true"] + .submenu {
     opacity: 1; visibility: visible; transform: translateY(0);
   }

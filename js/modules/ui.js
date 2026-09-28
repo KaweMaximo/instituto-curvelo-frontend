@@ -54,6 +54,14 @@ export function iniciarMenu() {
   }));
 
   document.addEventListener('click', () => fecharSubmenus());
+  // Fecha o submenu quando o foco do teclado sai do item (Tab além do último link)
+  document.querySelectorAll('.menu__item--submenu').forEach((item) => {
+    item.addEventListener('focusout', (e) => {
+      if (!item.contains(e.relatedTarget)) {
+        item.querySelector('.submenu__botao').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     botoesSub.forEach((b) => {
