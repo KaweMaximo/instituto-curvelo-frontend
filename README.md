@@ -63,7 +63,7 @@ Os módulos ES não funcionam abrindo o arquivo direto (`file://`); use sempre u
 - **JS:** 13 módulos juntados e minificados em `js/main.min.js` (com source map).
 - **CSS:** 6 folhas unidas e minificadas em `css/estilos.min.css`.
 - **HTML:** 1 CSS e 1 JS no lugar de 6 folhas e 13 módulos; comentários e espaços removidos.
-- **Imagens:** apenas os formatos usados (SVG e WebP, de 3 a 4 KB cada).
+- **Imagens:** só os formatos usados na página: WebP nas fotos (8 a 10 KB, cerca de 40% menores que os JPG equivalentes) e SVG no logo (8 KB, contra 14 KB do PNG). Os JPG/PNG ficam no repositório apenas como referência. Todas têm `width`/`height` (sem salto de layout) e os cartões usam `loading="lazy"`.
 
 Resultado (v1.1.1): o código do projeto (HTML + CSS + JS, sem o Day.js, que já vem minificado) passa de cerca de 80 KB para 52 KB, 35% a menos; com o gzip do GitHub Pages, trafegam cerca de 15 KB. O número de arquivos baixados na abertura cai de 20 (1 HTML, 6 CSS e 13 JS) para 3.
 
