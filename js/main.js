@@ -5,6 +5,7 @@
 import { iniciarMenu } from './modules/ui.js';
 import { iniciarRoteador } from './modules/router.js';
 import { atualizarContador } from './modules/contador.js';
+import { iniciarTema } from './modules/tema.js';
 
 document.documentElement.classList.replace('no-js', 'js');
 
@@ -16,6 +17,7 @@ document.querySelector('.pular-link').addEventListener('click', (e) => {
 });
 
 iniciarMenu();
+iniciarTema();
 atualizarContador();
 iniciarRoteador();
 

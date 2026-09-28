@@ -13,6 +13,7 @@ Plataforma de página única (SPA) para divulgar projetos sociais e cadastrar vo
 - Cadastro com validação de consistência (dígitos verificadores do CPF, idade mínima, DDD, e-mail), máscaras e resumo de erros.
 - Rascunho salvo automaticamente e lista "Meus cadastros" no localStorage.
 - Menu responsivo (hambúrguer no celular, dropdown no desktop), modal de confirmação e toast.
+- Temas de cor claro, escuro e alto contraste: seguem o sistema (`prefers-color-scheme`, `prefers-contrast`) ou a escolha feita no rodapé, que fica salva.
 - Conformidade com WCAG 2.1 AA; veja [docs/acessibilidade.md](docs/acessibilidade.md).
 
 ## Tecnologias
@@ -42,13 +43,13 @@ Os módulos ES não funcionam abrindo o arquivo direto (`file://`); use sempre u
 
 ```
 ├── html/index.html        casca da SPA (cabeçalho, main, rodapé, modal, toast)
-├── css/                   tokens (design system), base, layout, components, spa
+├── css/                   tokens (design system), temas, base, layout, components, spa
 │   └── estilos.css        ponto de entrada do CSS para o build
 ├── imagens/               SVG e WebP (usados) + JPG/PNG de compatibilidade
 ├── js/
 │   ├── main.js            ponto de entrada
 │   ├── modules/           router, views, templates, formulario, validacao,
-│   │                      mascaras, storage, datas, ui, contador, dados
+│   │                      mascaras, storage, datas, ui, contador, dados, tema
 │   └── vendor/dayjs/      Day.js (cópia local, licença MIT)
 ├── scripts/build.mjs      build de produção
 ├── docs/acessibilidade.md relatório de auditoria WCAG 2.1 AA
@@ -59,12 +60,12 @@ Os módulos ES não funcionam abrindo o arquivo direto (`file://`); use sempre u
 
 `npm run build` gera `dist/` com:
 
-- **JS:** 12 módulos juntados e minificados em `js/main.min.js` (com source map).
-- **CSS:** 5 folhas unidas e minificadas em `css/estilos.min.css`.
-- **HTML:** 1 CSS e 1 JS no lugar de 5 folhas e 12 módulos; comentários e espaços removidos.
+- **JS:** 13 módulos juntados e minificados em `js/main.min.js` (com source map).
+- **CSS:** 6 folhas unidas e minificadas em `css/estilos.min.css`.
+- **HTML:** 1 CSS e 1 JS no lugar de 6 folhas e 13 módulos; comentários e espaços removidos.
 - **Imagens:** apenas os formatos usados (SVG e WebP, de 3 a 4 KB cada).
 
-Resultado: HTML + CSS + JS passam de cerca de 78 KB para 44 KB, e o número de arquivos baixados na abertura cai de 18 (1 HTML, 5 CSS e 12 JS) para 3.
+Resultado (v1.1.0): HTML + CSS + JS passam de cerca de 90 KB para 52 KB, e o número de arquivos baixados na abertura cai de 20 (1 HTML, 6 CSS e 13 JS) para 3.
 
 ## Fluxo de trabalho (GitFlow)
 
@@ -86,7 +87,7 @@ Exemplo: `feat(cadastro): valida dígitos verificadores do CPF`
 ## Manutenção
 
 - **Novo projeto social:** acrescente um objeto em `js/modules/dados.js`. Cartão, filtro e página de detalhe são gerados automaticamente.
-- **Cores, fontes e espaçamentos:** altere só `css/tokens.css`.
+- **Cores, fontes e espaçamentos:** altere só `css/tokens.css`. Os componentes usam tokens semânticos (`--cor-texto`, `--cor-superficie`...); para ajustar o modo escuro ou o alto contraste, mude os mesmos tokens em `css/temas.css` e confira o contraste.
 - **Nova rota:** crie a view em `views.js` e registre em `ROTAS` no `router.js`.
 - **Integração com back-end:** substitua as funções de `storage.js`; o restante da aplicação não precisa mudar.
 - Antes de abrir um PR, rode o axe-core e o validador W3C (veja `docs/acessibilidade.md`).

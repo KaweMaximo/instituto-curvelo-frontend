@@ -1,0 +1,193 @@
+/* =========================================================
+   TEMAS DE COR - escuro e alto contraste
+   Só redefinem os tokens semânticos de tokens.css.
+
+   Quem decide o tema:
+   1) A escolha feita no seletor do rodapé (atributo data-tema no html,
+      salvo no localStorage e aplicado no head antes da pintura).
+   2) Sem escolha, as preferências do sistema operacional:
+      prefers-color-scheme (modo escuro) e prefers-contrast (alto contraste).
+   3) forced-colors (Alto Contraste do Windows): o navegador impõe as
+      cores do sistema; aqui só garantimos bordas e foco visíveis.
+   Os blocos se repetem porque o CSS não permite juntar uma media query
+   e um seletor de atributo na mesma regra.
+   ========================================================= */
+
+/* ---------- Escuro ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema]) {
+  color-scheme: dark;
+  --cor-fundo: #121820;
+  --cor-superficie: #1b232d;
+  --cor-fundo-alternado: #18202a;
+  --cor-fundo-destaque: #16324d;
+  --cor-texto: #e6ebf0;
+  --cor-texto-suave: #aab6c2;
+  --cor-texto-destaque: #d6e8fa;
+  --cor-link: #8cc4ff;
+  --cor-link-hover: #b8dbff;
+  --cor-borda: #8593a1;
+  --cor-divisoria: #334150;
+  --cor-botao-fundo: #8cc4ff;
+  --cor-botao-fundo-hover: #b8dbff;
+  --cor-botao-texto: #0b1a2a;
+  --cor-foco: #ffbf47;
+  --cor-foco-contorno: #0b1a2a;
+  --cor-erro-texto: #ff8a80;
+  --cor-sucesso-texto: #6fd49a;
+  --cor-alerta-texto: #f2c05c;
+  --cor-desabilitado-fundo: #334150;
+  --cor-desabilitado-texto: #aab6c2;
+  --cor-rodape-fundo: #0b1016;
+  --cor-rodape-texto: #e6ebf0;
+  --cor-rodape-suave: #aab6c2;
+  --cor-aviso-fundo: #3a2f12;
+  --cor-aviso-texto: #f5e6c4;
+  --cor-toast-fundo: #2a3642;
+  --cor-toast-texto: #ffffff;
+  --fundo-logo: #ffffff;           /* o logo tem texto escuro: ganha uma "placa" clara */
+  --icone-valido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%236fd49a' stroke-width='2'/%3E%3C/svg%3E");
+  --sombra-cartao: 0 1px 3px rgba(0, 0, 0, .5);
+  }
+}
+:root[data-tema="escuro"] {
+  color-scheme: dark;
+  --cor-fundo: #121820;
+  --cor-superficie: #1b232d;
+  --cor-fundo-alternado: #18202a;
+  --cor-fundo-destaque: #16324d;
+  --cor-texto: #e6ebf0;
+  --cor-texto-suave: #aab6c2;
+  --cor-texto-destaque: #d6e8fa;
+  --cor-link: #8cc4ff;
+  --cor-link-hover: #b8dbff;
+  --cor-borda: #8593a1;
+  --cor-divisoria: #334150;
+  --cor-botao-fundo: #8cc4ff;
+  --cor-botao-fundo-hover: #b8dbff;
+  --cor-botao-texto: #0b1a2a;
+  --cor-foco: #ffbf47;
+  --cor-foco-contorno: #0b1a2a;
+  --cor-erro-texto: #ff8a80;
+  --cor-sucesso-texto: #6fd49a;
+  --cor-alerta-texto: #f2c05c;
+  --cor-desabilitado-fundo: #334150;
+  --cor-desabilitado-texto: #aab6c2;
+  --cor-rodape-fundo: #0b1016;
+  --cor-rodape-texto: #e6ebf0;
+  --cor-rodape-suave: #aab6c2;
+  --cor-aviso-fundo: #3a2f12;
+  --cor-aviso-texto: #f5e6c4;
+  --cor-toast-fundo: #2a3642;
+  --cor-toast-texto: #ffffff;
+  --fundo-logo: #ffffff;           /* o logo tem texto escuro: ganha uma "placa" clara */
+  --icone-valido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%236fd49a' stroke-width='2'/%3E%3C/svg%3E");
+  --sombra-cartao: 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+/* ---------- Alto contraste (texto 15:1 ou mais) ---------- */
+@media (prefers-contrast: more) {
+  :root:not([data-tema]) {
+  color-scheme: dark;
+  --cor-fundo: #000000;
+  --cor-superficie: #000000;
+  --cor-fundo-alternado: #000000;
+  --cor-fundo-destaque: #1a1a1a;
+  --cor-texto: #ffffff;
+  --cor-texto-suave: #ffffff;
+  --cor-texto-destaque: #ffff00;
+  --cor-link: #ffff00;
+  --cor-link-hover: #ffffff;
+  --cor-borda: #ffffff;
+  --cor-divisoria: #ffffff;
+  --cor-botao-fundo: #ffff00;
+  --cor-botao-fundo-hover: #ffffff;
+  --cor-botao-texto: #000000;
+  --cor-foco: #00ffff;
+  --cor-foco-contorno: #000000;
+  --cor-erro-texto: #ff9e9e;
+  --cor-sucesso-texto: #7dff9a;
+  --cor-alerta-texto: #ffd24d;
+  --cor-erro-fundo: #ff9e9e;
+  --cor-sucesso-fundo: #7dff9a;
+  --cor-alerta-fundo: #ffd24d;
+  --cor-sobre-preenchimento: #000000;
+  --cor-desabilitado-fundo: #000000;
+  --cor-desabilitado-texto: #c0c0c0;
+  --cor-rodape-fundo: #000000;
+  --cor-rodape-texto: #ffffff;
+  --cor-rodape-suave: #ffffff;
+  --cor-aviso-fundo: #000000;
+  --cor-aviso-borda: #ffff00;
+  --cor-aviso-texto: #ffffff;
+  --cor-toast-fundo: #000000;
+  --cor-toast-texto: #ffffff;
+  --fundo-logo: #ffffff;
+  --icone-valido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%237dff9a' stroke-width='2'/%3E%3C/svg%3E");
+  --sombra-cartao: none;
+  --sombra-elevada: 0 0 0 2px #ffffff;
+  }
+}
+:root[data-tema="alto-contraste"] {
+  color-scheme: dark;
+  --cor-fundo: #000000;
+  --cor-superficie: #000000;
+  --cor-fundo-alternado: #000000;
+  --cor-fundo-destaque: #1a1a1a;
+  --cor-texto: #ffffff;
+  --cor-texto-suave: #ffffff;
+  --cor-texto-destaque: #ffff00;
+  --cor-link: #ffff00;
+  --cor-link-hover: #ffffff;
+  --cor-borda: #ffffff;
+  --cor-divisoria: #ffffff;
+  --cor-botao-fundo: #ffff00;
+  --cor-botao-fundo-hover: #ffffff;
+  --cor-botao-texto: #000000;
+  --cor-foco: #00ffff;
+  --cor-foco-contorno: #000000;
+  --cor-erro-texto: #ff9e9e;
+  --cor-sucesso-texto: #7dff9a;
+  --cor-alerta-texto: #ffd24d;
+  --cor-erro-fundo: #ff9e9e;
+  --cor-sucesso-fundo: #7dff9a;
+  --cor-alerta-fundo: #ffd24d;
+  --cor-sobre-preenchimento: #000000;
+  --cor-desabilitado-fundo: #000000;
+  --cor-desabilitado-texto: #c0c0c0;
+  --cor-rodape-fundo: #000000;
+  --cor-rodape-texto: #ffffff;
+  --cor-rodape-suave: #ffffff;
+  --cor-aviso-fundo: #000000;
+  --cor-aviso-borda: #ffff00;
+  --cor-aviso-texto: #ffffff;
+  --cor-toast-fundo: #000000;
+  --cor-toast-texto: #ffffff;
+  --fundo-logo: #ffffff;
+  --icone-valido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%237dff9a' stroke-width='2'/%3E%3C/svg%3E");
+  --sombra-cartao: none;
+  --sombra-elevada: 0 0 0 2px #ffffff;
+}
+
+/* No alto contraste, nada depende de sombra ou de tom de cinza:
+   links sempre sublinhados e bordas sólidas em todos os blocos. */
+:root[data-tema="alto-contraste"] a { text-decoration-thickness: 2px; }
+:root[data-tema="alto-contraste"] .cartao,
+:root[data-tema="alto-contraste"] .modal,
+:root[data-tema="alto-contraste"] .toast,
+:root[data-tema="alto-contraste"] .rodape { border: 2px solid #ffffff; }
+@media (prefers-contrast: more) {
+  :root:not([data-tema]) a { text-decoration-thickness: 2px; }
+  :root:not([data-tema]) .cartao,
+  :root:not([data-tema]) .modal,
+  :root:not([data-tema]) .toast,
+  :root:not([data-tema]) .rodape { border: 2px solid #ffffff; }
+}
+
+/* ---------- Cores forçadas (Windows) ---------- */
+@media (forced-colors: active) {
+  .botao, .filtro, .menu__botao, .campo__controle, .cartao, .toast, .modal { border: 1px solid CanvasText; }
+  .filtro[aria-pressed="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  :focus-visible { outline: 3px solid Highlight; }
+  .menu__icone, .menu__icone::before, .menu__icone::after { background: CanvasText; }
+}

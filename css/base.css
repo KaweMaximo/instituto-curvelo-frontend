@@ -8,8 +8,8 @@ body {
   font-family: var(--fonte-base);
   font-size: var(--texto-base);
   line-height: var(--altura-linha-texto);
-  color: var(--cor-neutro-900);
-  background: var(--cor-branco);
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
 }
 
 h1, h2, h3 { line-height: var(--altura-linha-titulo); margin: 0 0 var(--espaco-4); }
@@ -18,19 +18,19 @@ h2 { font-size: var(--texto-xl); }
 h3 { font-size: var(--texto-lg); }
 p, ul, ol, dl { margin: 0 0 var(--espaco-4); }
 address { font-style: normal; }
-small { font-size: var(--texto-sm); color: var(--cor-neutro-700); }
+small { font-size: var(--texto-sm); color: var(--cor-texto-suave); }
 
 [hidden] { display: none !important; } /* garante que o atributo hidden vença classes com display */
 
 img { max-width: 100%; height: auto; display: block; }
 
-a { color: var(--cor-primaria-700); text-underline-offset: 2px; }
-a:hover { color: var(--cor-primaria-900); }
+a { color: var(--cor-link); text-underline-offset: 2px; }
+a:hover { color: var(--cor-link-hover); }
 
 :focus-visible {
-  outline: 3px solid var(--cor-secundaria-400);
+  outline: 3px solid var(--cor-foco);
   outline-offset: 2px;
-  box-shadow: 0 0 0 5px var(--cor-neutro-900); /* garante visibilidade do foco em fundo claro ou escuro */
+  box-shadow: 0 0 0 5px var(--cor-foco-contorno); /* garante visibilidade do foco em fundo claro ou escuro */
 }
 
 .visualmente-oculto {
@@ -41,5 +41,5 @@ a:hover { color: var(--cor-primaria-900); }
 }
 
 .pular-link { position: absolute; left: var(--espaco-4); top: -100px; z-index: 100;
-  padding: var(--espaco-2) var(--espaco-4); background: var(--cor-branco); }
+  padding: var(--espaco-2) var(--espaco-4); background: var(--cor-fundo); }
 .pular-link:focus { top: var(--espaco-4); }

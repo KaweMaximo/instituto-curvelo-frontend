@@ -1,5 +1,6 @@
 /* Ponto de entrada do CSS para o build: o esbuild junta e minifica tudo em dist/css/estilos.min.css */
 @import "./tokens.css";
+@import "./temas.css";
 @import "./base.css";
 @import "./layout.css";
 @import "./components.css";
