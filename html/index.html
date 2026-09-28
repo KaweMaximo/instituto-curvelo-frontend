@@ -7,7 +7,11 @@
   <meta name="description" content="Projeto acadêmico de Desenvolvimento Front-end com o tema do Instituto Curvelo: projetos sociais, voluntariado e doações.">
   <!-- Projeto acadêmico com conteúdo ilustrativo: não deve aparecer em buscadores como site oficial -->
   <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light dark">
+  <!-- Aplica o tema salvo antes da primeira pintura (evita "piscar" o tema claro) -->
+  <script>try{var t=JSON.parse(localStorage.getItem('curvelo:v1:tema'));if(t)document.documentElement.setAttribute('data-tema',t)}catch(e){}</script>
   <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/temas.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/components.css">
@@ -24,7 +28,7 @@
 
   <header class="cabecalho">
     <div class="container cabecalho__barra">
-      <a href="#/inicio" data-rota>
+      <a class="cabecalho__logo" href="#/inicio" data-rota>
         <img src="../imagens/logo-instituto-curvelo.svg" alt="Instituto Curvelo - página inicial" width="160" height="48">
       </a>
       <nav class="menu" aria-label="Menu principal">
@@ -67,6 +71,16 @@
       <nav aria-label="Links institucionais">
         <a href="#/privacidade">Política de privacidade (LGPD)</a>
       </nav>
+      <div class="rodape__tema">
+        <label for="tema">Tema de cores</label>
+        <select id="tema" aria-describedby="tema-dica">
+          <option value="">Automático (do sistema)</option>
+          <option value="claro">Claro</option>
+          <option value="escuro">Escuro</option>
+          <option value="alto-contraste">Alto contraste</option>
+        </select>
+        <small id="tema-dica">A escolha fica salva neste navegador.</small>
+      </div>
       <p><small>&copy; 2026 Instituto Curvelo</small></p>
     </div>
   </footer>
