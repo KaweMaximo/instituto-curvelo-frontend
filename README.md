@@ -65,7 +65,7 @@ Os módulos ES não funcionam abrindo o arquivo direto (`file://`); use sempre u
 - **HTML:** 1 CSS e 1 JS no lugar de 6 folhas e 13 módulos; comentários e espaços removidos.
 - **Imagens:** apenas os formatos usados (SVG e WebP, de 3 a 4 KB cada).
 
-Resultado (v1.1.0): HTML + CSS + JS passam de cerca de 90 KB para 52 KB, e o número de arquivos baixados na abertura cai de 20 (1 HTML, 6 CSS e 13 JS) para 3.
+Resultado (v1.1.1): o código do projeto (HTML + CSS + JS, sem o Day.js, que já vem minificado) passa de cerca de 80 KB para 52 KB, 35% a menos; com o gzip do GitHub Pages, trafegam cerca de 15 KB. O número de arquivos baixados na abertura cai de 20 (1 HTML, 6 CSS e 13 JS) para 3.
 
 ## Fluxo de trabalho (GitFlow)
 

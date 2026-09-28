@@ -75,8 +75,11 @@ for (const nome of await readdir('imagens')) {
 await cp('js/vendor', `${DIST}/vendor`, { recursive: true });
 
 // 5) Relatório
-const antes = (await tamanho('css')) + (await tamanho('js')) + (await tamanho('html'));
+// Só o código do projeto: o Day.js (js/vendor) já vem minificado e é copiado sem mudança,
+// então fica fora da comparação dos dois lados.
+const antes = (await tamanho('css')) + (await tamanho('js')) - (await tamanho('js/vendor')) + (await tamanho('html'));
 const depois = (await tamanho(`${DIST}/css`)) + (await tamanho(`${DIST}/js`)) - (await stat(`${DIST}/js/main.min.js.map`)).size
   + (await stat(`${DIST}/index.html`)).size;
-console.log(`HTML+CSS+JS: ${(antes / 1024).toFixed(1)} KB -> ${(depois / 1024).toFixed(1)} KB (sem o source map)`);
+const reducao = Math.round((1 - depois / antes) * 100);
+console.log(`HTML+CSS+JS: ${(antes / 1024).toFixed(1)} KB -> ${(depois / 1024).toFixed(1)} KB (-${reducao}%, sem o source map)`);
 console.log(`dist/ completo: ${((await tamanho(DIST)) / 1024).toFixed(1)} KB`);

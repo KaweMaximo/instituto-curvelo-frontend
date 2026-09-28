@@ -1,6 +1,6 @@
 {
   "name": "instituto-curvelo-frontend",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Plataforma web do Instituto Curvelo (projeto acadêmico de Desenvolvimento Front-end - Cruzeiro do Sul Virtual).",
   "type": "module",

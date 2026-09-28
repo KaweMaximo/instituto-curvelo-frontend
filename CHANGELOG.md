@@ -2,6 +2,11 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.1.1] - 2026-09-28
+
+### Corrigido
+- O relatório do `npm run build` somava o Day.js (js/vendor) só no tamanho de antes, o que exagerava a redução. Agora compara apenas o código do projeto e mostra a porcentagem (cerca de 80 KB para 52 KB, 35% a menos).
+
 ## [1.1.0] - 2026-09-28
 
 ### Adicionado
