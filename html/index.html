@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instituto Curvelo</title>
+  <meta name="description" content="Projeto acadêmico de Desenvolvimento Front-end com o tema do Instituto Curvelo: projetos sociais, voluntariado e doações.">
+  <!-- Projeto acadêmico com conteúdo ilustrativo: não deve aparecer em buscadores como site oficial -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/spa.css">
+  <!-- type="module": carrega js/main.js e seus imports; já é adiado (defer) por padrão -->
+  <script type="module" src="../js/main.js"></script>
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <aside class="aviso-academico" aria-label="Aviso sobre este site">
+    <p class="container">Projeto acadêmico (Engenharia de Software, Cruzeiro do Sul Virtual). Conteúdo ilustrativo: este não é o site oficial do Instituto Curvelo e nenhum dado é enviado a servidores.</p>
+  </aside>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__barra">
+      <a href="#/inicio" data-rota>
+        <img src="../imagens/logo-instituto-curvelo.svg" alt="Instituto Curvelo - página inicial" width="160" height="48">
+      </a>
+      <nav class="menu" aria-label="Menu principal">
+        <button class="menu__botao" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span class="menu__icone" aria-hidden="true"></span>
+          <span class="menu__texto">Menu</span>
+        </button>
+        <ul class="menu__lista" id="menu-principal">
+          <li class="menu__item"><a class="menu__link" href="#/inicio">Início</a></li>
+          <li class="menu__item menu__item--submenu">
+            <a class="menu__link" href="#/projetos">Projetos sociais</a>
+            <button class="submenu__botao" type="button" aria-expanded="false" aria-controls="submenu-projetos">
+              <span class="visualmente-oculto">Mostrar subpáginas de Projetos sociais</span>
+              <span class="submenu__seta" aria-hidden="true"></span>
+            </button>
+            <ul class="submenu" id="submenu-projetos">
+              <li><a class="submenu__link" href="#/projetos/oficinas">Oficinas de tecnologia</a></li>
+              <li><a class="submenu__link" href="#/projetos/mentoria">Mentoria de carreira</a></li>
+              <li><a class="submenu__link" href="#/projetos/clube">Clube de eletrônica</a></li>
+            </ul>
+          </li>
+          <li class="menu__item"><a class="menu__link" href="#/cadastro">Cadastro</a></li>
+          <li class="menu__item"><a class="menu__link" href="#/meus-cadastros">Meus cadastros <span class="selo" data-contador-cadastros hidden><span data-contador-numero>0</span><span class="visualmente-oculto" data-contador-texto> cadastros salvos</span></span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Área da SPA: o roteador troca o conteúdo deste main a cada mudança de hash -->
+  <main id="conteudo" tabindex="-1">
+    <noscript>
+      <div class="container secao">
+        <p class="alerta alerta--aviso"><span class="alerta__texto">Esta plataforma precisa de JavaScript. Ative-o no navegador ou fale com a gente pelo e-mail contato@institutocurvelo.org.br.</span></p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="rodape">
+    <div class="container linha linha--entre">
+      <nav aria-label="Links institucionais">
+        <a href="#/privacidade">Política de privacidade (LGPD)</a>
+      </nav>
+      <p><small>&copy; 2026 Instituto Curvelo</small></p>
+    </div>
+  </footer>
+
+  <!-- Componentes globais reutilizados pelas views -->
+  <dialog class="modal" id="modal" aria-labelledby="modal-titulo">
+    <form method="dialog">
+      <h2 id="modal-titulo">Confirmação</h2>
+      <p id="modal-texto"></p>
+      <div class="modal__acoes">
+        <button class="botao botao--secundario" value="cancelar" id="modal-cancelar">Cancelar</button>
+        <button class="botao" value="confirmar" id="modal-confirmar">Confirmar</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
