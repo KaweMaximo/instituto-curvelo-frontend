@@ -1,0 +1,70 @@
+/* =========================================================
+   DESIGN SYSTEM - Instituto Curvelo
+   Todas as decisões visuais vivem aqui; os demais arquivos
+   só consomem estas variáveis.
+   Contrastes medidos sobre branco (#fff), WCAG 2.1.
+   ========================================================= */
+:root {
+  /* ---------- Cores primárias (marca) ---------- */
+  --cor-primaria-900: #08406f;  /* hover/ativo      10,6:1 */
+  --cor-primaria-700: #0b5394;  /* links, botões     7,8:1 */
+  --cor-primaria-100: #e3eef9;  /* fundos de destaque; texto primário sobre ele 6,7:1 */
+
+  /* ---------- Cor secundária (destaque) ---------- */
+  --cor-secundaria-400: #ffbf47; /* foco e selos; só com texto escuro (9,0:1) */
+
+  /* ---------- Cores de estado (feedback) ---------- */
+  --cor-sucesso: #2f7d4f;  /* 5,0:1 */
+  --cor-erro:    #b3261e;  /* 6,5:1 */
+  --cor-alerta:  #8a5a00;  /* 5,9:1 */
+
+  /* ---------- Neutros ---------- */
+  --cor-neutro-900: #1f2933; /* texto principal 14,8:1 */
+  --cor-neutro-700: #52606d; /* texto secundário 6,5:1 */
+  --cor-neutro-400: #7b8794; /* bordas de campos (3,7:1, acima do 3:1 exigido para componentes) */
+  --cor-neutro-200: #cbd2d9; /* divisórias decorativas */
+  --cor-neutro-100: #f5f7fa; /* fundo de seções alternadas */
+  --cor-branco:     #ffffff;
+
+  /* ---------- Tipografia ---------- */
+  --fonte-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Escala modular 1,25 (terça maior) a partir de 16px */
+  --texto-xs:   0.8rem;    /* 12,8px - legendas, notas legais */
+  --texto-sm:   0.875rem;  /* 14px   - dicas de campo, metadados */
+  --texto-base: 1rem;      /* 16px   - corpo; evita zoom automático no iOS */
+  --texto-lg:   1.25rem;   /* 20px   - h3, títulos de cartão */
+  --texto-xl:   1.563rem;  /* 25px   - h2 */
+  --texto-2xl:  clamp(1.953rem, 1.6rem + 1.5vw, 2.441rem); /* 31-39px - h1 fluido */
+  --peso-regular: 400;
+  --peso-negrito: 700;
+  --altura-linha-texto: 1.5;
+  --altura-linha-titulo: 1.2;
+
+  /* ---------- Espaçamentos (base 4px, escala modular) ---------- */
+  --espaco-1: 0.25rem;  /*  4px */
+  --espaco-2: 0.5rem;   /*  8px */
+  --espaco-3: 0.75rem;  /* 12px */
+  --espaco-4: 1rem;     /* 16px */
+  --espaco-5: 1.5rem;   /* 24px */
+  --espaco-6: 2rem;     /* 32px */
+  --espaco-7: 3rem;     /* 48px */
+  --espaco-8: 4rem;     /* 64px */
+
+  /* ---------- Formas, sombras e movimento ---------- */
+  --raio-sm: 4px;
+  --raio-md: 8px;
+  --raio-pilula: 999px;
+  --sombra-cartao: 0 1px 3px rgba(31, 41, 51, .12), 0 4px 12px rgba(31, 41, 51, .08);
+  --sombra-elevada: 0 8px 24px rgba(31, 41, 51, .18);
+  --transicao: 150ms ease-out;
+  --alvo-toque: 44px;          /* WCAG 2.5.5 */
+  --largura-conteudo: 72rem;   /* 1152px */
+  --largura-leitura: 40rem;    /* ~70 caracteres por linha */
+
+  /* Breakpoints (referência; usados nas media queries):
+     sm 36em (576px) | md 48em (768px) | lg 62em (992px) | xl 75em (1200px) | xxl 90em (1440px) */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --transicao: 0ms; }
+}

@@ -1,0 +1,56 @@
+/* Estilos específicos da SPA (views dinâmicas) */
+
+/* Foco programático no título da view não precisa de anel visual */
+[data-titulo-view]:focus { outline: none; }
+
+/* Transição suave na troca de view */
+.view { animation: view-entra var(--transicao) both; }
+@keyframes view-entra { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* Filtros de projetos (botões de alternância) */
+.filtros { display: flex; flex-wrap: wrap; gap: var(--espaco-2); margin-bottom: var(--espaco-5); padding: 0; list-style: none; }
+.filtro {
+  min-height: var(--alvo-toque); padding: var(--espaco-2) var(--espaco-4);
+  border: 2px solid var(--cor-primaria-700); border-radius: var(--raio-pilula);
+  background: var(--cor-branco); color: var(--cor-primaria-700);
+  font: inherit; font-weight: var(--peso-negrito); cursor: pointer;
+  transition: background-color var(--transicao), color var(--transicao);
+}
+.filtro:hover { background: var(--cor-primaria-100); }
+.filtro[aria-pressed="true"] { background: var(--cor-primaria-700); color: var(--cor-branco); }
+
+/* Lista de cadastros salvos */
+.lista-cadastros { list-style: none; padding: 0; display: grid; gap: var(--espaco-4); }
+.cadastro-item { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--espaco-3);
+  padding: var(--espaco-4); border: 1px solid var(--cor-neutro-200); border-radius: var(--raio-md); }
+.cadastro-item__dados { margin: 0; }
+.botao--perigo { background: var(--cor-branco); color: var(--cor-erro); border-color: var(--cor-erro); }
+.botao--perigo:hover { background: var(--cor-erro); border-color: var(--cor-erro); color: var(--cor-branco); }
+
+/* Resumo de erros do formulário */
+.resumo-erros { margin-bottom: var(--espaco-5); }
+.resumo-erros ul { margin: var(--espaco-2) 0 0; }
+.resumo-erros a { color: var(--cor-erro); font-weight: var(--peso-negrito); }
+
+/* Mensagem de erro controlada pelo JS.
+   No formulário da SPA (novalidate) quem decide o estado é o JavaScript,
+   então os estilos automáticos de :user-invalid/:user-valid são neutralizados. */
+/* :where() zera a especificidade do prefixo, para as classes do JS (.campo--invalido) vencerem */
+:where(.formulario[novalidate]) .campo__controle:user-invalid,
+:where(.formulario[novalidate]) .campo__controle:user-valid {
+  border: 1px solid var(--cor-neutro-400); background-image: none; padding-right: var(--espaco-3);
+}
+:where(.formulario[novalidate]) .campo__controle:user-invalid ~ .campo__erro { display: none; }
+.campo--valido .campo__controle:not(select) {
+  background: var(--cor-branco) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%232f7d4f' stroke-width='2'/%3E%3C/svg%3E") no-repeat right var(--espaco-3) center / 1rem;
+  padding-right: var(--espaco-7);
+}
+.formulario .campo--invalido .campo__controle { border: 2px solid var(--cor-erro); }
+.formulario .campo--invalido .campo__erro { display: block; }
+.formulario .campo--valido .campo__controle { border-color: var(--cor-sucesso); }
+
+.contador { font-size: var(--texto-sm); color: var(--cor-neutro-700); text-align: right; }
+
+/* Aviso de projeto acadêmico (texto 13,5:1 sobre o amarelo claro) */
+.aviso-academico { background: #fff4d6; border-bottom: 1px solid var(--cor-secundaria-400); }
+.aviso-academico p { margin: 0; padding-block: var(--espaco-2); font-size: var(--texto-sm); color: var(--cor-neutro-900); }
